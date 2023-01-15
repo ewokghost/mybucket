@@ -1,0 +1,58 @@
+# Function that creates a dictionary of adjacent nodes with unique characters
+
+def makeAdj(a):
+    output = {}
+    length = len(a)
+    counter = 1
+    
+    while counter < length:    
+        parent=a[counter]
+        if s[parent] != s[counter]:
+            if output.get(parent) == None:
+                output[parent]=[counter]
+            else:
+        	    output[parent].append(counter)
+        counter += 1
+        
+    return output
+    
+def testPaths(a):
+    output = []
+    counter = 0
+    
+    for x, y in a.items():
+    
+        for z in y:
+        
+            output.append([x,z])
+            memory = z
+            
+            while a.get(memory) != None:
+            
+                memory = a[z]
+                output[counter].append(memory)
+                
+            counter += 1
+            
+    return output
+                
+
+# Givens for this problem
+
+parent = [-1,0,0,1,1,2]
+s = "abacbe"
+
+# This is for debugging and testing code
+# As a note, I was considering using a linked list. This might make sense
+# For individual paths. The difficulty is that Nodes 1 and 2
+# in the example go two different directions. I would
+# need to make a linked list for each individual path
+
+# As per what I read before, it would make sense to just use the
+# adjacent dictionary to parse the rest of the information
+
+adj = makeAdj(parent)
+
+print(adj)
+
+print(testPaths(adj))
