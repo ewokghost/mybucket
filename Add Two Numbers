@@ -1,0 +1,81 @@
+# Makes the nodes for the linked list
+
+class Node(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+    def __str__(self):
+        return f"{self.val} -- {self.next}"
+
+# Function to turn the linked list into numbers
+
+def makeNum(input):
+    tens = 0
+    output=0
+    
+    while input != None:
+        output += (input.val) * (10 ** tens)
+        input = input.next
+        tens += 1
+    
+    return output
+
+# Takes a number and turns it into a linked list
+
+def makeList(input):
+    tens = 0
+    inputStr = str(input)
+    length = len(inputStr)
+    counter = 0
+    offset = -1
+    holder = []
+    output = Node()
+    firstNode = output
+    
+    while counter < (length - 1):
+        #holder.append(int(inputStr[offset]))
+        output.val = int(inputStr[offset])
+        output.next = Node()
+        output = output.next
+        
+        counter += 1
+        offset -= 1
+        
+    output.val = int(inputStr[offset])
+    output.next = None
+    
+    output = firstNode
+    
+    return output
+
+# Creates nodes for the first linked list
+l1=Node(2)
+b=Node(4)
+c=Node(3)
+
+# Creates nodes for the second linked list
+l2=Node(5)
+e=Node(6)
+f=Node(4)
+
+# Links the nodes of l1
+l1.next=b
+b.next=c
+
+# Links the nodes of l2
+l2.next=e
+e.next=f
+
+# Now for the main course. Adding the first two linked lists together, and returning a linked list with the solution:
+
+num1 = makeNum(l1)
+num2 = makeNum(l2)
+
+solution = makeList(num1+num2)
+
+print(solution)
+
+# I'm using this for debugging
+    
+#print (makeList(482))
